@@ -1,0 +1,26 @@
+{{drivers|json}}
+
+<div class="row">
+    <div *ngFor="let oszlop of oszlopok" class="col">
+            {{oszlop}}
+    </div>
+    <div class="col">
+        Actions
+    </div>
+</div>
+
+<div *ngFor="let driver of drivers" class="row">
+    <div *ngFor="let oszlop of oszlopok" class="col">
+
+        <input [(ngModel)]="driver[oszlop]"
+        type="text" 
+        class="form-control">
+        
+    </div>
+
+           
+   
+    <div class="col">
+        Actions
+    </div>
+</div>
