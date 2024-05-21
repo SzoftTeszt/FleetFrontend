@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DriverComponent } from './driver/driver.component';
 import { CarsComponent } from './cars/cars.component';
 import { RoutesComponent } from './routes/routes.component';
+import { SearchPipe } from './search.pipe';
 
 
 
@@ -20,7 +21,8 @@ import { RoutesComponent } from './routes/routes.component';
     NavbarComponent,
     DriverComponent,
     CarsComponent,
-    RoutesComponent
+    RoutesComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

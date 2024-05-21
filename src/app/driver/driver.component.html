@@ -1,26 +1,54 @@
-{{drivers|json}}
-
+<!-- {{drivers|json}} -->
+<p class="my-5"> Keresés: 
+    <input style="width:200px" [(ngModel)]="keresendo"
+    type="text" 
+    class="form-control">  
+</p>
 <div class="row">
     <div *ngFor="let oszlop of oszlopok" class="col">
-            {{oszlop}}
+            {{oszlop.text}}
     </div>
     <div class="col">
         Actions
     </div>
 </div>
 
-<div *ngFor="let driver of drivers" class="row">
+<div class="row my-4">
+   
     <div *ngFor="let oszlop of oszlopok" class="col">
 
-        <input [(ngModel)]="driver[oszlop]"
-        type="text" 
-        class="form-control">
-        
-    </div>
+        <ng-container *ngIf="oszlop.type=='plain'; else nemplain">
+                <p>#</p>
+        </ng-container>
+        <ng-template #nemplain>
+            <input [(ngModel)]="newDriver[oszlop.key]"
+            [type]="oszlop.type" 
+            class="form-control">    
+        </ng-template>    
 
-           
+    </div>        
    
     <div class="col">
-        Actions
+        <button (click)="addDriver()" type="button" class="btn btn-primary btn-sm">Add</button>        
+    </div>
+</div>
+
+<div *ngFor="let driver of drivers|search:keresendo" class="row">
+    <div *ngFor="let oszlop of oszlopok" class="col">
+
+        <ng-container *ngIf="oszlop.type=='plain'; else nemplain">
+            <p>{{driver.id}}</p>
+            <!-- <p>{{driver["id"]}}</p> -->
+        </ng-container>
+        <ng-template #nemplain>
+            <input [(ngModel)]="driver[oszlop.key]"
+            [type]="oszlop.type" 
+            class="form-control">    
+        </ng-template>       
+    </div>        
+   
+    <div class="col">
+        <button (click)="deleteDriver(driver)" type="button" class="btn btn-primary btn-sm">Delete</button>
+        <button (click)="updateDriver(driver)" type="button" class="ms-2 btn btn-secondary btn-sm">Update</button>
     </div>
 </div>
